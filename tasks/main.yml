@@ -8,7 +8,10 @@
     - MySQL-python
 
 - name: Start and enable MariaDB
-  service: name=mariadb enabled=yes state=started
+  service:
+    name: mariadb
+    enabled: yes
+    state: started
 
 # We use two steps to setup root password. In the first one we setup only for localhost.
 # on the second we setup for 127.0.0.1 & ::1

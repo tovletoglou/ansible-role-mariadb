@@ -1,6 +1,8 @@
 - name: restart mariadb
-  service: name=mariadb state=restarted enabled=true
-  
+  service:
+    name: mariadb
+    state: restarted
+
 - name: Flush privileges
   command: 'mysql -ne "{{ item }}"'
   with_items:
