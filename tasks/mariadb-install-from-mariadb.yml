@@ -57,7 +57,7 @@
 
 - name: Configure MySql
   template:
-    src: .my.cnf.tpl
+    src: .my.cnf.j2
     dest: ~/.my.cnf
     owner: root
     group: root
