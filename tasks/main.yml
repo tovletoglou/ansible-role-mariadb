@@ -15,21 +15,6 @@
     enabled: yes
     state: started
 
-# We use two steps to setup root password. In the first one we setup only for localhost.
-# on the second we setup for 127.0.0.1 & ::1
-# We do that in order the role/playbook run under ansible/localhost
-- name: Set root Password for localhost
-  mysql_user:
-    name: root
-    host: "{{ item }}"
-    password: "{{ mysql_root_password }}"
-    priv: "*.*:ALL,GRANT"
-    state: present
-  with_items:
-    - localhost
-  notify:
-    - Flush privileges
-
 - name: Configure MySql for easy access as root user
   template:
     src: .my.cnf.tpl
@@ -38,7 +23,7 @@
     group: root
     mode: 0600
 
-- name: Set root Password for 127.0.0.1 & ::1
+- name: Set root password
   mysql_user:
     name: root
     host: "{{ item }}"
@@ -46,8 +31,10 @@
     priv: "*.*:ALL,GRANT"
     state: present
   with_items:
+    - "{{ inventory_hostname }}"
     - 127.0.0.1
     - ::1
+    - localhost
   notify:
     - Flush privileges
 
