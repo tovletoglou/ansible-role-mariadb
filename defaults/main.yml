@@ -7,6 +7,12 @@ mariadb_install_from_centos: true
 # Dummy password. Override the password in your playbook.
 mysql_root_password: rootdbpassword
 
+# Add custom my.cnf configuration.
+mariadb_my_cnf_configuration: true
+
+# Enable galera cluster.
+mariadb_galera_configuration: true
+
 # Galera cluster example configuration. Override it per node.
 # In order to use Galera cluster you should install MariaDB 10.1 changing the
 # variable: `mariadb_install_from_centos: false`
