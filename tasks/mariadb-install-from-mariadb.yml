@@ -1,6 +1,7 @@
 ---
 
 - name: Add MariaDB 10.1 repo
+  become: yes
   yum_repository:
     name: MariaDB
     description: MariaDB yum repo
@@ -10,6 +11,7 @@
     enabled: yes
 
 - name: Install prerequest for MariaDB 10.1
+  become: yes
   yum:
     name: "{{ item }}"
     state: latest
@@ -22,6 +24,7 @@
     - perl-DBI
 
 - name: Install MariaDB 10.1 and dependencies
+  become: yes
   yum:
     name: "{{ item }}"
     state: latest

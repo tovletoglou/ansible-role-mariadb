@@ -1,6 +1,7 @@
 ---
 
 - name: Edit master my.cnf (max_allowed_packet)
+  become: yes
   ini_file:
     dest: /etc/my.cnf
     section: mysqld
@@ -11,6 +12,7 @@
     - restart mariadb
 
 - name: Edit master my.cnf (innodb_large_prefix)
+  become: yes
   ini_file:
     dest: /etc/my.cnf
     section: mysqld
@@ -21,6 +23,7 @@
     - restart mariadb
 
 - name: Edit master my.cnf (innodb_file_format)
+  become: yes
   ini_file:
     dest: /etc/my.cnf
     section: mysqld
@@ -31,6 +34,7 @@
     - restart mariadb
 
 - name: Edit master my.cnf (innodb_file_per_table)
+  become: yes
   ini_file:
     dest: /etc/my.cnf
     section: mysqld

@@ -1,6 +1,7 @@
 ---
 
 - name: Install MariaDB from Centos repository
+  become: yes
   yum:
     name: "{{ item }}"
     state: latest

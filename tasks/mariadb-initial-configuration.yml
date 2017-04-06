@@ -1,10 +1,12 @@
 - name: Start and enable MariaDB
+  become: yes
   service:
     name: mariadb
     enabled: yes
     state: started
 
 - name: Set root password
+  become: yes
   mysql_user:
     name: root
     host: "{{ item }}"
@@ -20,6 +22,7 @@
     - Flush privileges
 
 - name: Configure MySql for easy access as root user
+  become: yes
   template:
     src: .my.cnf.j2
     dest: ~/.my.cnf
@@ -28,6 +31,7 @@
     mode: 0600
 
 - name: Ensure anonymous users are not in the database
+  become: yes
   mysql_user:
     name: ''
     host_all: yes
@@ -36,12 +40,14 @@
     - Flush privileges
 
 - name: Remove the test database
+  become: yes
   mysql_db:
     name: test
     state: absent
 
 # TODO: convert to Ansible mysql module
 - name: Disallow root login remotely
+  become: yes
   command: 'mysql -NBe "{{ item }}"'
   with_items:
     - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
