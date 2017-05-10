@@ -1,9 +1,11 @@
 - name: restart mariadb
+  become: yes
   service:
     name: mariadb
     state: restarted
 
 - name: Flush privileges
+  become: yes
   command: 'mysql -ne "{{ item }}"'
   with_items:
     - FLUSH PRIVILEGES
