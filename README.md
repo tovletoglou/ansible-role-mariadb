@@ -7,3 +7,7 @@ Tested CentOS 7
 ## Dependencies
 
 None
+
+## Info
+
+Fetch from dnf Fedora repo.
